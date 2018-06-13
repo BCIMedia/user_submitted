@@ -1,0 +1,18 @@
+<div class="row admin-container">
+  <div class="columns small-12 admin-page-title">
+    <h1>Editing Content</h1>
+  </div>
+  <div class="columns small-12">
+    <%= render "form" %>
+  </div>
+
+  <div class="columns small-12 universal-flex-container universal-flex-natural admin-button-container">
+    <%= link_to user_submitted_collection_path(@content.collection), class: "admin-button admin-back universal-flex-button flex-button-natural" do %>
+      <i class="fa fa-arrow-left"></i> Back
+    <% end %>
+    <%= link_to user_submitted_collection_content_path(@content.collection, @content), class: "admin-button admin-back universal-flex-button flex-button-natural" do %>
+      Show
+    <% end %>
+  </div>
+
+</div>

@@ -1,0 +1,33 @@
+<div class="row admin-container">
+  <div class="columns small-12 admin-page-title">
+    <div class="content-container" id="content-<%= @content.id %>">
+      <h2 class="subhead"><%= link_to @content.collection.name, user_submitted_collection_path(@content.collection) %></h2>
+      <div class="content-card">
+        <div class="columns small-12">
+          <%= render partial: "user_submitted/contents/display", locals: { content: @content, size: "100%" } %>
+        </div>
+        <div class="columns small-12">
+          <%= @content.caption %>
+        </div>
+        <div class="columns small-12">
+          <%= @content.credit %>
+        </div>
+        <div class="columns small-12">
+          Email: <%= @content.email %>
+        </div>
+        <div class="columns small-12">
+          Created: <%= @content.created_at %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns small-12 universal-flex-container universal-flex-natural admin-button-container">
+    <%= link_to user_submitted_collection_path(@content.collection), class: "admin-button admin-back universal-flex-button flex-button-natural" do %>
+      <i class="fa fa-arrow-left"></i> Back
+    <% end %>
+    <%= link_to edit_user_submitted_collection_content_path(@content.collection, @content), class: "admin-button admin-back universal-flex-button flex-button-natural" do %>
+      Edit
+    <% end %>
+  </div>
+</div>

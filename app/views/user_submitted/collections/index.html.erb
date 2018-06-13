@@ -1,0 +1,38 @@
+<div class="row admin-container">
+  <div class="columns small-12 admin-page-title">
+    <h1>User Submitted Collections</h1>
+  </div>
+  <div class="columns small-12 universal-flex-container universal-flex-natural admin-button-container">
+    <%= link_to new_user_submitted_collection_path, class: "admin-button admin-new universal-flex-button flex-button-natural" do %>
+      <i class="fa fa-plus"></i> Create
+    <% end %>
+    <%= link_to user_submitted_collection_contents_path(collection_id: "all"), class: "admin-button universal-flex-button flex-button-natural" do %>
+      All Contents
+    <% end %>
+  </div>
+  <div class="columns small-12">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Description</th>
+          <%# <th>Contents</th> %>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @collections.each do |collection| %>
+          <tr>
+            <td>
+              <%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_user_submitted_collection_path(collection) %>
+            </td>
+            <td><%= link_to collection.name, user_submitted_collection_path(collection) %></td>
+            <td><%= collection.description.truncate(200, seperator: " ") %></td>
+            <%# <td><%= collection.contents.count %1></td> %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

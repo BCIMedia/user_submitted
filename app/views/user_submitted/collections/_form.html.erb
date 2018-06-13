@@ -1,0 +1,29 @@
+<%= form_for @collection do |f| %>
+  <% if @collection.errors.any? %>
+    <div class="small-12 columns">
+      <div id="error_explanation">
+        <h2><%= pluralize(@collection.errors.count, "error") %> prohibited this collection from being saved:</h2>
+
+        <ul>
+          <% @collection.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="columns small-12">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="columns small-12">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div class="columns small-12">
+    <div class="universal-flex-container universal-flex-natural admin-button-container">
+      <%= f.submit "Submit", class: "admin-submit universal-flex-button flex-button-natural" %>
+    </div>
+  </div>
+<% end %>

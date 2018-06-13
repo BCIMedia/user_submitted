@@ -1,0 +1,5 @@
+<% if content.data.content_type.include? "image" %>
+  <%= image_tag content.data.url, width: size %>
+<% elsif content.data.content_type.include? "video" %>
+  <%= video_tag "#{content.data.url}#t=0.5", width: size, controls: "controls", preload: "metadata" %>
+<% end %>
