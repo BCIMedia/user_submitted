@@ -2,13 +2,13 @@
   <thead>
     <tr>
       <th></th>
+      <th>Status</th>
       <th>Submitted</th>
       <th>Content</th>
       <th>Credit</th>
       <% unless @collection %>
         <th>Collection</th>
       <% end %>
-      <th>Status</th>
       <th>Note</th>
     </tr>
   </thead>
@@ -22,7 +22,9 @@
           <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, user_submitted_collection_content_path(content.collection, content), method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
         <td>
-          <%= content.status %>
+          <span style="color:<%= content.get_color %>;">
+            <%= content.get_icon %>&nbsp;<%= content.status.capitalize %>
+          </span>
         </td>
         <td>
           <%= content.created_at.strftime("%l:%M%P, %B %e") %>

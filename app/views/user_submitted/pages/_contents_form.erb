@@ -1,0 +1,46 @@
+<%= form_for @content,
+  url: @content.new_record? ? user_submitted_create_content_path(@content.collection) : user_submitted_collection_content_path(@content.collection, @content),
+  html: { multipart: true } do |f| %>
+  <div class="row">
+    <% if @content.errors.any? %>
+      <div class="small-12 columns">
+        <div id="error_explanation">
+          <p class="error"><%= pluralize(@content.errors.count, "error") %> prohibited this content from being saved:</p>
+
+          <ul>
+            <% @content.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+
+    <% if @collection %>
+      <%= hidden_field_tag "user_submitted_content[collection_id]", @collection.id %>
+    <% end %>
+
+    <div class="columns small-12">
+      <%= f.label "Upload a Photo. Valid types: png, jpeg, jpg, and gif." %>
+      <%= f.file_field :data %>
+    </div>
+    <div class="columns small-12">
+      <%= f.label :caption %>
+      <%= f.text_area :caption, placeholder: "What is happening in this photo?" %>
+    </div>
+    <div class="columns small-12 medium-6">
+      <%= f.label :credit %>
+      <%= f.text_field :credit, placeholder: "Who took this photo?" %>
+    </div>
+    <div class="columns small-12 medium-6">
+      <%= f.label :email %>
+      <%= f.text_field :email, placeholder: "How can we reach you? Internal use ONLY." %>
+    </div>
+    <div class="columns small-12">
+      <div class="universal-flex-container universal-flex-natural admin-button-container">
+        <%= f.submit "Submit", class: "admin-submit universal-flex-button flex-button-natural" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
