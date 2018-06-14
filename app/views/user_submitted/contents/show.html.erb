@@ -7,16 +7,16 @@
           <%= render partial: "user_submitted/contents/display", locals: { content: @content, size: "100%" } %>
         </div>
         <div class="columns small-12">
-          <%= @content.caption %>
+          <strong>Caption:</strong> <%= @content.caption %>
         </div>
         <div class="columns small-12">
-          <%= @content.credit %>
+          <strong>Credit:</strong> <%= @content.credit %>
         </div>
         <div class="columns small-12">
-          Email: <%= @content.email %>
+          <strong>Email:</strong> <%= @content.email %>
         </div>
         <div class="columns small-12">
-          Created: <%= @content.created_at %>
+          <strong>Created:</strong> <%= @content.created_at.strftime("%l:%M%P %A, %B %e, %Y") %>
         </div>
       </div>
     </div>

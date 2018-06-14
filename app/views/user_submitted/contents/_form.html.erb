@@ -58,11 +58,6 @@
     </div>
     <div class="columns small-4">
       <div class="row">
-        <% unless @content.new_record? %>
-          <div class="columns small-12">
-            Created: <%= @content.created_at %>
-          </div>
-        <% end %>
         <div class="columns small-12">
           <%= f.label :status %>
           <%= f.select(:status, UserSubmitted::Content.statuses.keys.map { |w| [w.humanize, w] }) %>
@@ -71,6 +66,11 @@
           <%= f.label :note %>
           <%= f.text_field :note %>
         </div>
+        <% unless @content.new_record? %>
+          <div class="columns small-12">
+            <strong>Created:</strong> <%= @content.created_at.strftime("%l:%M%P %A, %B %e, %Y") %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

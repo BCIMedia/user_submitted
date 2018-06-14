@@ -3,6 +3,7 @@ class CreateUserSubmittedCollections < ActiveRecord::Migration
     create_table :user_submitted_collections do |t|
       t.string :name
       t.text   :description
+      t.string :identifier
 
       t.timestamps null: false
     end

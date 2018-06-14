@@ -54,7 +54,7 @@ module UserSubmitted
 
       # Only allow a trusted parameter "white list" through.
       def collection_params
-        params.require(:user_submitted_collection).permit(:name, :description)
+        params.require(:user_submitted_collection).permit(:name, :description, :identifier)
       end
   end
 end

@@ -17,7 +17,7 @@
           <th></th>
           <th>Name</th>
           <th>Description</th>
-          <%# <th>Contents</th> %>
+          <th>Contents</th>
         </tr>
       </thead>
 
@@ -29,7 +29,7 @@
             </td>
             <td><%= link_to collection.name, user_submitted_collection_path(collection) %></td>
             <td><%= collection.description.truncate(200, seperator: " ") %></td>
-            <%# <td><%= collection.contents.count %1></td> %>
+            <td><%= collection.contents.count %></td>
           </tr>
         <% end %>
       </tbody>

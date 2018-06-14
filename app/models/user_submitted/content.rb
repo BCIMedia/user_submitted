@@ -2,6 +2,8 @@ module UserSubmitted
   class Content < ActiveRecord::Base
     self.table_name = "user_submitted_contents"
 
+    validates_presence_of :credit
+
     belongs_to :collection
 
     if Rails.env == "development"
