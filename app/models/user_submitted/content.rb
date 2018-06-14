@@ -22,6 +22,10 @@ module UserSubmitted
 
     enum status: { pending: 0, rejected: -1, approved: 1 }
 
+    scope :images, -> { where("data_content_type LIKE ?", "%image%") }
+    scope :videos, -> { where("data_content_type LIKE ?", "%video%") }
+    scope :images, -> { where(status: :approved) }
+
     private
 
     def is_video?
