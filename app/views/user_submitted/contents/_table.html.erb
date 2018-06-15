@@ -18,9 +18,9 @@
 
   <tbody>
     <% contents.each do |content| %>
-<tr id="content-row-<%= content.id %>">
-      <%= render partial: "user_submitted/contents/row", locals: {collection: @collection, content: content} %>
-</tr>
+      <tr id="content-row-<%= content.id %>">
+        <%= render partial: "user_submitted/contents/row", locals: {collection: @collection, content: content} %>
+      </tr>
     <% end %>
   </tbody>
 </table>
@@ -29,9 +29,9 @@
     $(".status-btn a").click(function(e){
       e.preventDefault();
       var content_id     = $(this).attr('data-content-id');
-      var collection_id     = $(this).attr('data-collection-id');
-      var status = $(this).attr('data-status');
-      var note   = $("#user_submitted_content_note_"+content_id).val();
+      var collection_id  = $(this).attr('data-collection-id');
+      var status         = $(this).attr('data-status');
+      var note           = $("#user_submitted_content_note_"+content_id).val();
       update_status(collection_id, content_id, status, note);
     });
     function update_status(collection_id, content_id, status, note){
