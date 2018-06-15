@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   namespace :user_submitted do
     get "collections/:id/contents/new",     to: "pages#new",    as: :new_content
     post "collections/:id/contents/create", to: "pages#create", as: :create_content
+    # TODO can users view their conent? Email to lookup and PIN to change?
+    # get "contents/index/:email",         to: "pages#index"
+    # get "contents/:id/:email",           to: "pages#show"
   end
-  # TODO can users view their conent? Email to lookup and PIN to change?
-  # get "user_submitted/contents/index/:email",         to: "pages#index"
-  # get "user_submitted/contents/:id/:email",           to: "pages#show"
 end

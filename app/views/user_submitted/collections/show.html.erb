@@ -25,7 +25,9 @@
       <i class="fa fa-plus"></i> Create
     <% end %>
   </div>
+  <%= render partial: "legend" %>
   <div class="columns small-12">
-    <%= render partial: "user_submitted/contents/table", locals: {contents: @collection.contents} %>
+    <% contents = @status ? @collection.contents.send(@status) : @collection.contents %>
+    <%= render partial: "user_submitted/contents/table", locals: {contents: contents} %>
   </div>
 </div>

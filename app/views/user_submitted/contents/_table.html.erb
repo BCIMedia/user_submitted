@@ -1,4 +1,4 @@
-<table>
+<table id="user-submitted">
   <thead>
     <tr>
       <th></th>
@@ -22,9 +22,22 @@
           <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, user_submitted_collection_content_path(content.collection, content), method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
         <td>
-          <span style="color:<%= content.get_color %>;">
-            <%= content.get_icon %>&nbsp;<%= content.status.capitalize %>
-          </span>
+          <div class="status-block">
+            <span class="current-status" style="color:<%= content.get_color %>;">
+              <%= content.get_icon %>&nbsp;<%= content.status.capitalize %>
+            </span>
+            <% if content.status == "pending" %>
+              <div class="change-status">
+                <div>
+                  <span class="status-approve">Approve</span><span class="status-reject">Reject</span>
+                </div>
+
+                <div>
+                  <input id="note"></input>
+                </div>
+              </div>
+            <% end %>
+          </div>
         </td>
         <td>
           <%= content.created_at.strftime("%l:%M%P, %B %e") %>
@@ -43,3 +56,32 @@
     <% end %>
   </tbody>
 </table>
+<style>
+.status-block{
+  padding: 5px;
+}
+.status-approve{
+  left: 5px;
+  position: absolute
+}
+.status-reject{
+  right: 5px;
+  position: absolute;
+}
+.current-status{
+}
+.change-status{
+  display: none;
+  border: solid black 1px;
+  border-radius: 5px;
+
+}
+.status-block:hover .change-status{
+  position: absolute;
+  display: block;
+  padding: 5px;
+  z-index: 42;
+  background-color: #999;
+}
+
+</style>
