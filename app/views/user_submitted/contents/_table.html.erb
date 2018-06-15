@@ -28,11 +28,10 @@
             </span>
             <% if content.status == "pending" %>
               <div class="change-status">
-                <div>
-                  <span class="status-approve">Approve</span><span class="status-reject">Reject</span>
+                <div class="status-buttons">
+                  <span class="status-btn approve">Approve</span><span class="status-btn reject">Reject</span>
                 </div>
-
-                <div>
+                <div class="status-note">
                   <input id="note"></input>
                 </div>
               </div>
@@ -60,21 +59,10 @@
 .status-block{
   padding: 5px;
 }
-.status-approve{
-  left: 5px;
-  position: absolute
-}
-.status-reject{
-  right: 5px;
-  position: absolute;
-}
-.current-status{
-}
 .change-status{
   display: none;
   border: solid black 1px;
   border-radius: 5px;
-
 }
 .status-block:hover .change-status{
   position: absolute;
@@ -82,6 +70,16 @@
   padding: 5px;
   z-index: 42;
   background-color: #999;
+}
+.status-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: .25rem;
+}
+.status-btn {
+  padding: .15rem;
+}
+.current-status {
 }
 
 </style>
