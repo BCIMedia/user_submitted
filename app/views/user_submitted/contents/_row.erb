@@ -1,0 +1,37 @@
+<td>
+  <%= link_to '<i class="fa fa-eye"></i>'.html_safe, user_submitted_collection_content_path(content.collection, content) %>
+  <%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_user_submitted_collection_content_path(content.collection, content) %>
+  <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, user_submitted_collection_content_path(content.collection, content), method: :delete, data: { confirm: 'Are you sure?' } %>
+</td>
+<td>
+  <div class="status-block">
+    <span class="current-status" style="color:<%= content.get_color %>;">
+      <%= content.get_icon %>&nbsp;<%= content.status.capitalize %>
+    </span>
+    <% if content.status == "pending" %>
+      <div class="change-status">
+        <div class="status-buttons">
+          <span class="status-btn approve"><%= link_to "Approve", "#", data: {collection_id: collection.id, content_id: content.id, status: "approved"} %></span>
+          <span class="status-btn reject"><%= link_to "Reject", "#", data: {collection_id: collection.id, content_id: content.id, status: "rejected"} %></span>
+        </div>
+        <div class="status-note">
+          <input placeholder="If rejecting: why?" type="text" name="user_submitted_content[note]" id="user_submitted_content_note_<%= content.id %>">
+          <span>This will be sent to the user</span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</td>
+<td>
+  <%= content.created_at.strftime("%l:%M%P, %B %e") %>
+</td>
+<td>
+  <%= render partial: "user_submitted/contents/display", locals: { content: content, size: 100 } %>
+</td>
+<td><%= content.credit.truncate(35) %></td>
+<% unless collection %>
+  <td><%= link_to content.collection.name, user_submitted_collection_path(content.collection) %></td>
+<% end %>
+<td>
+  <%= content.note %>
+</td>

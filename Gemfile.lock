@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    user_submitted (0.1.0)
+    user_submitted (0.1.01)
       figaro (= 1.1.1)
       mysql2 (= 0.4.10)
       rails (= 4.2.8)
@@ -152,11 +152,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  user_submitted!
   factory_bot_rails
   pry-rails
   rspec-rails
   shoulda-matchers
+  user_submitted!
   webmock
 
 BUNDLED WITH

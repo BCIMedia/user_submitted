@@ -1,0 +1,38 @@
+#user-submitted{
+  .status-block {
+    padding: 5px;
+
+    &:hover .change-status {
+      display: block;
+    }
+
+    .change-status {
+      display: none;
+      z-index: 42;
+      position: absolute;
+      padding: 5px;
+      background-color: #999;
+      border: solid black 1px;
+      border-radius: 5px;
+      margin-left: 95px;
+      margin-top: -65px;
+
+      .status-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: .25rem;
+
+        .status-btn {
+          padding: .15rem;
+          font-weight: 600;
+          &.approve a{
+            color: green;
+          }
+          &.reject a{
+            color: #990000;
+          }
+        }
+      }
+    }
+  }
+}

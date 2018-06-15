@@ -3,7 +3,9 @@ Rails.application.routes.draw do
     namespace :user_submitted do
       root to: "pages#home"
       resources :collections do
-        resources :contents
+        resources :contents do
+          post "update_status", to: "contents#update_status", as: :update_status
+        end
       end
     end
   end
