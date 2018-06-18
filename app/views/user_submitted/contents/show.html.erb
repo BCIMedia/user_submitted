@@ -7,7 +7,7 @@
           <%= render partial: "user_submitted/contents/display", locals: { content: @content, size: "100%" } %>
         </div>
         <div class="columns small-12">
-          <strong>Caption:</strong> <%= @content.caption %>
+          <strong>Caption:</strong> <%= simple_format(@content.caption) %>
         </div>
         <div class="columns small-12">
           <strong>Credit:</strong> <%= @content.credit %>
