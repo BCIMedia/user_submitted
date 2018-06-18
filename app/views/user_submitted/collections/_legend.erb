@@ -1,0 +1,17 @@
+<div class="columns small-12" style="font-size: 14px;">
+  <% if @status %>
+    <%= link_to request.path do %>
+      <span style="margin-right:10px;color:black;">
+        <i class="fa fa-globe" aria-hidden="true"></i>&nbsp;All
+      </span>
+    <% end %>
+  <% end %>
+  <% UserSubmitted::Content.statuses.each do |status| %>
+    <% obj = UserSubmitted::Content.new(status: status[1]) %>
+    <%= link_to "#{request.path}?status=#{obj.status}", class: "import-log-status" do %>
+      <span style="color:<%= obj.get_color %>;" <%="class=status-active" if @status == status[1]%>>
+        <%= obj.get_icon %>&nbsp;<%= obj.status.capitalize %>
+      </span>
+    <% end %>
+  <% end %>
+</div>

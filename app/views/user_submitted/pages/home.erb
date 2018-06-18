@@ -13,9 +13,9 @@
       <li>
         <h3><%= link_to collection.name, user_submitted_collection_path(collection) %></h3>
         <ul>
-        <li><%= "Pending:  #{collection.contents.pending.count}" %></li>
-        <li><%= "Approved: #{collection.contents.approved.count}" %></li>
-        <li><%= "Rejected: #{collection.contents.rejected.count}" %></li>
+        <li><%= link_to "Pending:  #{collection.contents.pending.count}", user_submitted_collection_path(collection, status: "pending") %></li>
+        <li><%= link_to "Approved: #{collection.contents.approved.count}", user_submitted_collection_path(collection, status: "approved") %></li>
+        <li><%= link_to "Rejected: #{collection.contents.rejected.count}", user_submitted_collection_path(collection, status: "rejected")  %></li>
         </ul>
       </li>
     <% end %>

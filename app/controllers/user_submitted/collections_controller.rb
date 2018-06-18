@@ -4,7 +4,9 @@ module UserSubmitted
 
     # GET /collections
     def index
+
       @collections = Collection.all
+      @collections = @collections.where(status: @status) if @status
     end
 
     # GET /collections/1
@@ -50,6 +52,7 @@ module UserSubmitted
       # Use callbacks to share common setup or constraints between actions.
       def set_collection
         @collection = Collection.find(params[:id])
+        @status     = params[:status]
       end
 
       # Only allow a trusted parameter "white list" through.

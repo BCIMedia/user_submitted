@@ -1,0 +1,49 @@
+#user-submitted{
+  .status-block {
+    padding: 5px;
+
+    &:hover .change-status {
+      visibility: visible;
+      opacity: 1;
+      -webkit-transition: opacity 0s, visibility 0s;
+      transition: opacity 0s, visibility 0s;
+    }
+
+    video, img {
+      max-height: 10rem;
+    }
+
+    .change-status {
+      visibility: hidden;
+      opacity: 0;
+      -webkit-transition: opacity .3s, visibility .3s;
+      transition: opacity .3s, visibility .3s;
+      max-width: 30rem;
+      z-index: 42;
+      position: absolute;
+      padding: 5px;
+      background-color: #999;
+      border: solid black 1px;
+      border-radius: 5px;
+      margin-left: 95px;
+      margin-top: -65px;
+
+      .status-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: .25rem;
+
+        .status-btn {
+          padding: .15rem;
+          font-weight: 600;
+          &.approve a{
+            color: green;
+          }
+          &.reject a{
+            color: #990000;
+          }
+        }
+      }
+    }
+  }
+}

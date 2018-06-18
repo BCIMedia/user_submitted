@@ -36,6 +36,13 @@ module UserSubmitted
       end
     end
 
+    def update_status
+      @collection = Collection.find(params[:collection_id])
+      @content    = Content.find(params[:content_id])
+      @content.update(status: params[:status], note: params[:note])
+      render partial: "row", locals: {collection: @collection, content: @content}
+    end
+
     # PATCH/PUT /contents/1
     def update
       if @content.update(content_params)
