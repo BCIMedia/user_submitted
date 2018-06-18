@@ -3,11 +3,17 @@
     padding: 5px;
 
     &:hover .change-status {
-      display: block;
+      visibility: visible;
+      opacity: 1;
+      -webkit-transition: opacity 0s, visibility 0s;
+      transition: opacity 0s, visibility 0s;
     }
 
     .change-status {
-      display: none;
+      visibility: hidden;
+      opacity: 0;
+      -webkit-transition: opacity .3s, visibility .3s;
+      transition: opacity .3s, visibility .3s;
       z-index: 42;
       position: absolute;
       padding: 5px;
