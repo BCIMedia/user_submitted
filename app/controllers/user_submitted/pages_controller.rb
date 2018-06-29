@@ -22,7 +22,7 @@ module UserSubmitted
     def create
       @content = Content.new(basic_content_params)
       if @content.save
-        redirect_to user_submitted_new_content_path, notice: 'Thank you, your image was successfully uploaded. We will review your submission.'
+        redirect_to user_submitted_new_content_path, notice: 'Thank you, your image/video was successfully uploaded. We will review your submission.'
       else
         render :new
       end
