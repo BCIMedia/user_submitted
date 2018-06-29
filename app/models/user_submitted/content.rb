@@ -31,6 +31,10 @@ module UserSubmitted
     scope :videos, -> { where("data_content_type LIKE ?", "%video%") }
     scope :images, -> { where(status: :approved) }
 
+    def content_rejected
+
+    end
+
     def get_color
       case status
       when "rejected"
