@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     end
   end
   namespace :user_submitted do
+    get "collection_groups/:id",            to: "pages#group",  as: :group
+    get "collections/:id",                  to: "pages#index",  as: :index
     get "collections/:id/contents/new",     to: "pages#new",    as: :new_content
     post "collections/:id/contents/create", to: "pages#create", as: :create_content
     # TODO can users view their conent? Email to lookup and PIN to change?
