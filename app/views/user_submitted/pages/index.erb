@@ -1,0 +1,53 @@
+<div class="row admin-container">
+  <div class="columns small-12">
+    <h2><%= @collection.name %></h2>
+  </div>
+  <div class="columns small-12">
+    <% @collection.contents.approved.each do |content| %>
+      <div class="slider-container">
+        <div class="hide-for-print">
+          <% if content.data.content_type.include? "image" %>
+            <%= link_to "#", data: {open: "gallery-images-modal-#{@collection.id}"} do %>
+              <%= image_tag content.data.url %>
+            <% end %>
+          <% elsif content.data.content_type.include? "video" %>
+            <%= content_tag :div, nil, class: "video-player", id: "video_player_#{content.id}", data: {source: content.data.url}%>
+          <% end %>
+          <div class="slider-image-info-group">
+            <% if content.credit.present? %>
+              <div class="image-caption">
+                <%= content.caption %>
+              </div>
+            <% end %>
+            <% if content.credit.present? %>
+              <div class="image-byline">
+                <%= content.credit %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<script type='text/javascript'>
+  var slick_options = {
+    cssEase: 'linear',
+    height: 'auto',
+    adaptiveHeight: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    dots: false
+  }
+  $(document).ready(function() {
+    $('.gallery-slider').slick(slick_options);
+    $('.video-player').each(function(){
+      jwplayer(this.id).setup({
+        file: $(this).data('source'),
+        width: '100%',
+        aspectratio: '16:9'
+      });
+    });
+  });
+</script>

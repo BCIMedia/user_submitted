@@ -6,10 +6,13 @@ module UserSubmitted
       @collections = UserSubmitted::Collection.includes(:contents).all
     end
 
-    # def index
-    #   binding.pry
+    def index
+      @collection = UserSubmitted::Collection.includes(:contents).find(params[:id])
+    end
 
-    # end
+    def group
+      @collections = UserSubmitted::Collection.includes(:contents).where(identifier: params[:id])
+    end
 
     # def show
     #   binding.pry
