@@ -15,7 +15,7 @@
             <%= render partial: "user_submitted/contents/display", locals: { content: content, size: "auto" } %>
           </div>
           <p class="submission-content-caption"><%= simple_format(content.caption) %></p>
-          <cite class="submission-content-credit"><%= content.credit %></cite>
+          <p class="submission-content-credit">Courtesy of <%= content.credit %></p>
         </div>
         <div class="status-note">
           <span>This will be sent to the user</span>

@@ -7,8 +7,10 @@ module UserSubmitted
     def index
       if @collection
         @contents = Content.where(collection: @collection)
+        @contents = @contents.where(status: params[:status]) if params[:status]
       else
         @contents = Content.all
+        @contents = @contents.where(status: params[:status]) if params[:status]
       end
     end
 

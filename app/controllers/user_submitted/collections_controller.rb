@@ -4,9 +4,7 @@ module UserSubmitted
 
     # GET /collections
     def index
-
       @collections = Collection.all
-      @collections = @collections.where(status: @status) if @status
     end
 
     # GET /collections/1
