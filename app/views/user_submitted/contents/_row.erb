@@ -35,7 +35,7 @@
 <td>
   <%= render partial: "user_submitted/contents/display", locals: { content: content, size: 100 } %>
 </td>
-<td><%= content.credit.truncate(35) %></td>
+<td><%= content.credit.truncate(35) if content.credit.present? %></td>
 <% unless collection %>
   <td><%= link_to content.collection.name, user_submitted_collection_path(content.collection) %></td>
 <% end %>

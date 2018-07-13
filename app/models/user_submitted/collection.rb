@@ -9,7 +9,7 @@ module UserSubmitted
       end
     end
 
-    has_many :contents, -> { order(id: :desc) }
+    has_many :contents, -> { where.not(status: Content.statuses[:temp]).order(id: :desc) }
 
   end
 end

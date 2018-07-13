@@ -4,7 +4,6 @@ module UserSubmitted
 
     validates_presence_of :credit
 
-
     belongs_to :collection
 
     if Rails.env == "development"
@@ -25,7 +24,7 @@ module UserSubmitted
     validates_attachment :data, presence: true,
       message:      "You must select an image to upload."
 
-    enum status: { pending: 0, rejected: -1, approved: 1 }
+    enum status: { temp: 0, pending: 1, rejected: -1, approved: 2 }
 
     scope :images, -> { where("data_content_type LIKE ?", "%image%") }
     scope :videos, -> { where("data_content_type LIKE ?", "%video%") }

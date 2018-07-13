@@ -1,46 +1,71 @@
-<%= form_for @content,
-  url: @content.new_record? ? user_submitted_create_content_path(@content.collection) : user_submitted_collection_content_path(@content.collection, @content),
-  html: { multipart: true } do |f| %>
-  <div class="row">
-    <% if @content.errors.any? %>
-      <div class="small-12 columns">
-        <div id="error_explanation">
-          <p class="error"><%= pluralize(@content.errors.count, "error") %> prohibited this content from being saved:</p>
-
-          <ul>
-            <% @content.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
+<% content_for :special_css do %>
+  <%= stylesheet_link_tag "user_submitted/dropzone.css" %>
+<% end %>
+<% content_for :special_js do %>
+  <%= javascript_include_tag "user_submitted/dropzone.js" %>
+<% end %>
+<%= form_for @content, url: user_submitted_create_content_path(@content.collection),
+      html: { class: "row dropzone", multipart: true } do |f| %>
+  <%= f.label(:email, "Your email address. We promise we will keep this private and will only be used incase we need to contact you regarding your submitted media.") %>
+  <%= f.text_field(:email, placeholder: "Email") %>
+  <% if @collection %>
+    <%= hidden_field_tag "user_submitted_content[collection_id]", @collection.id %>
+  <% end %>
+<% end %>
+<div id="dz-tpl" class="hide">
+  <div class="columns small-4">
+    <div class="dz-preview dz-file-preview">
+      <div class="dz-details">
+        <div class="dz-filename"><span data-dz-name></span></div>
+        <div class="dz-size" data-dz-size></div>
+        <img data-dz-thumbnail />
       </div>
-    <% end %>
-
-    <% if @collection %>
-      <%= hidden_field_tag "user_submitted_content[collection_id]", @collection.id %>
-    <% end %>
-
-    <div class="columns small-12">
-      <%= f.label "Choose a photo to upload, valid types: png, jpeg, jpg, and gif" %>
-      <%= f.file_field :data %>
-    </div>
-    <div class="columns small-12">
-      <%= f.label :caption %>
-      <%= f.text_area :caption, placeholder: "What is happening in this photo?" %>
-    </div>
-    <div class="columns small-12 medium-6">
-      <%= f.label :credit %>
-      <%= f.text_field :credit, placeholder: "Who took this photo?" %>
-    </div>
-    <div class="columns small-12 medium-6">
-      <%= f.label :email %>
-      <%= f.text_field :email, placeholder: "How can we reach you? Internal use ONLY." %>
-    </div>
-    <div class="columns small-12">
-      <div class="universal-flex-container universal-flex-natural admin-button-container">
-        <%= f.submit "Submit", class: "admin-submit universal-flex-button flex-button-natural" %>
+      <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+      <div class="dz-error-message"><span data-dz-errormessage></span></div>
+      <div class="dz-update-fields">
+        <textarea class="dz-caption" name="dz-caption[]" placeholder="Caption"></textarea>
+        <input type="text" class="dz-credit" name="dz-credit[]" placeholder="Credit">
+        <input type="button" class="dz-save" value="Save">
       </div>
     </div>
   </div>
-<% end %>
-
+</div>
+<script>
+  Dropzone.autoDiscover = false;
+  $(function() {
+    var user_submitted_dropzone = new Dropzone("#new_user_submitted_content", {
+      url: "<%= user_submitted_create_content_path(@content.collection) %>",
+      paramName: "user_submitted_content[data]",
+      maxFilesize: 2, // MB
+      previewTemplate: $('#dz-tpl').html(),
+      success: function(file, data) {
+        console.log("success");
+        console.log(file, data);
+        $(file.previewElement).data('id', data.id);
+        $(file.previewElement).find('.dz-save').click(function(){
+          var caption = $(this).parent().children('.dz-caption').val();
+          var credit = $(this).parent().children('.dz-credit').val();
+          $.ajax({
+            url: '<%= user_submitted_update_content_path(@content.collection) %>',
+            method: 'post',
+            data: {
+              content_id: data.id,
+              caption: caption,
+              credit: credit
+            }
+          })
+          .done(function(data) {
+            console.log(data);
+          })
+          .fail(function(err) {
+            console.log("Content update error", err);
+          });
+        });
+      },
+      error: function(file, err) {
+        $(file.previewElement).find('.dz-update-fields').hide();
+        console.log("error", err);
+      }
+    });
+  });
+</script>
