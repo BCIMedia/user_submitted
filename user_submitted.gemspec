@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = ["msmith@bcimedia.com"]
   s.summary     = %q{Storing user-submitted content}
   s.description = %q{Gem for requesting user-submitted photos and videos through a widget. Admins can then approve or reject the content for public display. All content is editable and can also be created in bulk by an admin.}
-  s.homepage    = "https://github.com/BallantineDigitalMedia/user_submitted"
+  s.homepage    = "https://github.com/BCIMedia/user_submitted"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
