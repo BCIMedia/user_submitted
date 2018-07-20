@@ -1,0 +1,36 @@
+.dropzone {
+  .dz-default {
+    width: 100%;
+    border: 2px dashed #666;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .dz-success-mark, .dz-error-mark, .dz-size {
+    display: none;
+  }
+
+  .dz-image-preview {
+    margin-top: 1rem;
+
+    .dz-preview {
+      border: 1px solid #ccc;
+      padding: 1rem;
+
+      .dz-details {
+        .dz-filename {
+          font-size: 0.75rem;
+        }
+
+        img {
+          display: block;
+          margin: 0.5rem auto;
+        }
+      }
+    }
+  }
+}
+.dropzone.dz-drag-hover .dz-default {
+  background-color: #ccc;
+}

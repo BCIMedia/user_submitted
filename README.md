@@ -21,6 +21,10 @@ Or install it yourself as:
 $ gem install user_submitted
 ```
 
+# Assets
+Make sure to precompile:
+`Rails.application.config.assets.precompile += %w(user_submitted/dropzone.js user_submitted/dropzone.scss user_submitted/admin.scss)`
+
 ## Contributing
 
 ## License
