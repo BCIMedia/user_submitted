@@ -7,7 +7,7 @@
 <%= form_for @content, url: user_submitted_create_content_path(@content.collection),
       html: { class: "row dropzone", multipart: true } do |f| %>
   <%= f.label(:email, "Your email address. We promise we will keep this private and will only be used incase we need to contact you regarding your submitted media.") %>
-  <%= f.text_field(:email, placeholder: "Email") %>
+  <%= f.text_field(:email, id: "dz-email", placeholder: "Email") %>
   <% if @collection %>
     <%= hidden_field_tag "user_submitted_content[collection_id]", @collection.id %>
   <% end %>
@@ -32,17 +32,32 @@
 </div>
 <script>
   Dropzone.autoDiscover = false;
-  $(function() {
+  $(function(){
+    $('#dz-email').on('input', function(e){
+      if(validateEmail($(this).val())) init_dropzone();
+    });
+    $('#dz-email').blur(function(){
+      if(validateEmail($(this).val())){
+        $(this).css('background-color', 'transparent');
+        $('.dz-default').show();
+      }else{
+        $(this).css('background-color', '#fcc');
+        $('.dz-default').hide();
+      }
+    });
+  });
+  function init_dropzone(){
     var user_submitted_dropzone = new Dropzone("#new_user_submitted_content", {
       url: "<%= user_submitted_create_content_path(@content.collection) %>",
       paramName: "user_submitted_content[data]",
-      maxFilesize: 2, // MB
+      maxFilesize: 10, // MB
       previewTemplate: $('#dz-tpl').html(),
       success: function(file, data) {
         console.log("success");
         console.log(file, data);
         $(file.previewElement).data('id', data.id);
         $(file.previewElement).find('.dz-save').click(function(){
+          var btn = this;
           var caption = $(this).parent().children('.dz-caption').val();
           var credit = $(this).parent().children('.dz-credit').val();
           $.ajax({
@@ -55,7 +70,8 @@
             }
           })
           .done(function(data) {
-            console.log(data);
+            console.log(data, btn);
+            $(btn).parents('.dz-image-preview').hide();
           })
           .fail(function(err) {
             console.log("Content update error", err);
@@ -67,5 +83,9 @@
         console.log("error", err);
       }
     });
-  });
+  }
+  function validateEmail(email){
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
 </script>
