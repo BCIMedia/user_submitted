@@ -37,7 +37,7 @@ module UserSubmitted
           credit:  params[:credit],
           status:  Content.statuses[:pending]
         )
-        render json: { success: true, id: @content.id }
+        render json: { success: true, id: @content.id, notice: "Thank you, your content was successfully uploaded."}
       else
         render json: { success: false, notice: "Could not update attributes" }
       end
