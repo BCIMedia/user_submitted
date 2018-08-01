@@ -8,10 +8,10 @@
       html: { class: "row dropzone", multipart: true } do |f| %>
   <%= f.label(:email, "Your email address. We promise we will keep this private and will only be used incase we need to contact you regarding your submitted media.") %>
   <%= f.text_field(:email, id: "dz-email", placeholder: "Email") %>
-  <div id="errormsg" class="hide-initially">This is not a vaild email.</div>
+  <div id="dz-errormsg" class="hide-initially">Please enter a valid email address.</div>
+  <div id="prompt"></div>
   <% if @collection %>
     <%= hidden_field_tag "user_submitted_content[collection_id]", @collection.id %>
-    <div id="prompt"></div>
   <% end %>
 <% end %>
 <div id="dz-tpl" class="hide">
@@ -28,7 +28,7 @@
         <textarea class="dz-caption" name="dz-caption[]" placeholder="Caption"></textarea>
         <input type="text" class="dz-credit" name="dz-credit[]" placeholder="Credit">
         <input type="button" class="dz-save" value="Save">
-        <span class="status-icon"></span>
+        <span class="dz-status-icon"></span>
       </div>
     </div>
   </div>
@@ -43,11 +43,11 @@
       if(validateEmail($(this).val())){
         $(this).css('background-color', 'transparent');
         $('.dz-default').show();
-        $('#errormsg').hide();
+        $('#dz-errormsg').hide();
       }else{
         $(this).css('background-color', '#fcc');
         $('.dz-default').hide();
-        $('#errormsg').show();
+        $('#dz-errormsg').show();
       }
     });
   });
@@ -66,7 +66,7 @@
         $(file.previewElement).data('id', data.id);
         $(file.previewElement).find('.dz-save').click(function(){
           var btn = this;
-          $(this).parent().children('.status-icon').html('<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>');
+          $(this).parent().children('.dz-status-icon').html('<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>');
           var caption = $(this).parent().children('.dz-caption').val();
           var credit = $(this).parent().children('.dz-credit').val();
           $.ajax({
@@ -79,7 +79,7 @@
             }
           })
           .done(function(data) {
-            $(btn).parent().children('.status-icon').html('<i class="fa fa-check" aria-hidden="true"></i>');
+            $(btn).parent().children('.dz-status-icon').html('<i class="fa fa-check" aria-hidden="true"></i>');
             $("#prompt").html(data["notice"]).css('display','flex');
             console.log(data, btn);
             // $(btn).parents('.dz-image-preview').hide();

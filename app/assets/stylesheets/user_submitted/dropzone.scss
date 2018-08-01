@@ -28,6 +28,10 @@
           margin: 0.5rem auto;
         }
       }
+
+      .dz-status-icon i.fa-check {
+        color: green;
+      }
     }
   }
 }
@@ -46,10 +50,7 @@ form#new_user_submitted_content #prompt {
   justify-content: center;
   border: solid black;
 }
-.status-icon i.fa-check {
-  color: green;
-}
-#errormsg {
+#dz-errormsg {
   font-size: 1.5em;
   font-weight: 600;
   color: #b61616;
