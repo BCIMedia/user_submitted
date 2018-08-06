@@ -1,7 +1,5 @@
 <%= form_for @content,
-  url: @content.new_record? ? user_submitted_collection_contents_path(@content.collection) : user_submitted_collection_content_path(@content.collection, @content),
-  html: { multipart: true } do |f| %>
-  <div class="row">
+  url: @content.new_record? ? user_submitted_collection_contents_path(@content.collection) : user_submitted_collection_content_path(@content.collection, @content), html: { multipart: true, class: "elevated-form row"} do |f| %>
     <% if @content.errors.any? %>
       <div class="small-12 columns">
         <div id="error_explanation">
@@ -49,11 +47,6 @@
             <%= f.collection_select(:collection_id, UserSubmitted::Collection.all, :id, :name, include_blank: "- Select Collection -") %>
           </div>
         <% end %>
-        <div class="columns small-12">
-          <div class="universal-flex-container universal-flex-natural admin-button-container">
-            <%= f.submit "Submit", class: "admin-submit universal-flex-button flex-button-natural" %>
-          </div>
-        </div>
       </div>
     </div>
     <div class="columns small-4">
@@ -73,5 +66,9 @@
         <% end %>
       </div>
     </div>
-  </div>
+    <div class="columns small-12">
+      <div class="universal-flex-container universal-flex-natural admin-button-container">
+        <%= f.submit "Submit", class: "admin-submit universal-flex-button flex-button-natural form-submit justify-end" %>
+      </div>
+    </div>
 <% end %>
