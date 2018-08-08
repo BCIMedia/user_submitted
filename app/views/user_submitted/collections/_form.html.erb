@@ -1,4 +1,4 @@
-<%= form_for @collection, html: {class: "row"} do |f| %>
+<%= form_for @collection, html: { multipart: true, class: "elevated-form row"} do |f| %>
   <% if @collection.errors.any? %>
     <div class="small-12 columns">
       <div id="error_explanation">
@@ -27,7 +27,7 @@
   </div>
   <div class="columns small-12">
     <div class="universal-flex-container universal-flex-natural admin-button-container">
-      <%= f.submit "Submit", class: "admin-submit universal-flex-button flex-button-natural" %>
+      <%= f.submit "Submit", class: "admin-submit universal-flex-button flex-button-natural form-submit justify-end" %>
     </div>
   </div>
 <% end %>
