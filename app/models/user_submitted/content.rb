@@ -48,11 +48,11 @@ module UserSubmitted
     def get_icon
       case status
       when "rejected"
-        "<i class='fa fa-exclamation' aria-hidden='true'></i>".html_safe
+        "<i class='fas fa-exclamation' aria-hidden='true'></i>".html_safe
       when "approved"
-        "<i class='fa fa-check' aria-hidden='true'></i>".html_safe
+        "<i class='fas fa-check' aria-hidden='true'></i>".html_safe
       when "pending"
-        "<i class='fa fa-clock-o' aria-hidden='true'></i>".html_safe
+        "<i class='far fa-clock' aria-hidden='true'></i>".html_safe
       end
     end
 
