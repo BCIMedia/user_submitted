@@ -1,7 +1,7 @@
 <td>
-  <%= link_to '<i class="fa fa-eye"></i>'.html_safe, user_submitted_collection_content_path(content.collection, content) %>
-  <%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_user_submitted_collection_content_path(content.collection, content) %>
-  <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, user_submitted_collection_content_path(content.collection, content), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to '<i class="fas fa-eye"></i>'.html_safe, user_submitted_collection_content_path(content.collection, content) %>
+  <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_user_submitted_collection_content_path(content.collection, content) %>
+  <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, user_submitted_collection_content_path(content.collection, content), method: :delete, data: { confirm: 'Are you sure?' } %>
 </td>
 <td>
   <div class="status-block">
