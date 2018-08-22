@@ -66,7 +66,7 @@
         $(file.previewElement).data('id', data.id);
         $(file.previewElement).find('.dz-save').click(function(){
           var btn = this;
-          $(this).parent().children('.dz-status-icon').html('<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>');
+          $(this).parent().children('.dz-status-icon').html('<i class="fas fa-spinner fa-spin" aria-hidden="true"></i>');
           var caption = $(this).parent().children('.dz-caption').val();
           var credit = $(this).parent().children('.dz-credit').val();
           $.ajax({
@@ -79,7 +79,7 @@
             }
           })
           .done(function(data) {
-            $(btn).parent().children('.dz-status-icon').html('<i class="fa fa-check" aria-hidden="true"></i>');
+            $(btn).parent().children('.dz-status-icon').html('<i class="fas fa-check" aria-hidden="true"></i>');
             $("#prompt").html(data["notice"]).css('display','flex');
             console.log(data, btn);
             // $(btn).parents('.dz-image-preview').hide();
