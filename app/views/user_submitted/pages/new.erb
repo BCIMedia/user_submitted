@@ -2,9 +2,7 @@
   <div class="columns small-12 admin-page-title">
     <h1>Submit your content for: <%= @collection.name %></h1>
 
-    <div class="columns small-12">
-      <%= @collection.description.html_safe %>
-    </div>
+    <%= @collection.description.html_safe %>
 
     <%= render "contents_form" %>
 
