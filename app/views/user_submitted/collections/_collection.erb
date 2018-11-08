@@ -1,15 +1,5 @@
 <% if collection.present? %>
   <div class="user-submitted-collection-show">
-    <div class="gallery-info">
-      <div class="meta-title-static">
-        <span class="gallery-title">
-          <%= collection.name.html_safe %>
-        </span>
-      </div>
-      <div class="small-12 columns">
-        <h6 class="vp-title"><%= collection.description.html_safe %></h6>
-      </div>
-    </div>
     <div class="gallery-slider" id="circle-arrows">
       <% content = collection.contents.approved.order(:created_at).first %>
       <div class="slider-container">
@@ -35,6 +25,18 @@
               <% end %>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="featured-video-info">
+      <div class="meta-title-static">
+        <h4 class="vp-title">
+          <%= collection.name.html_safe %>
+        </h4>
+      </div>
+      <div class="small-12 columns">
+        <div class="vp-title">
+          <p><%= collection.description.html_safe %></p>
         </div>
       </div>
     </div>
