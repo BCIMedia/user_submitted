@@ -3,7 +3,7 @@
   <%= render partial: "user_submitted/collections/show", locals: {collection: @collection} %>
   <% @collections.each do |collection| %>
     <div class="columns small-12 medium-6">
-      <%= render partial: "user_submitted/collections/show", locals: {collection: collection} %>
+      <%= render partial: "user_submitted/collections/preview", locals: {collection: collection} %>
     </div>
   <% end %>
 </div>

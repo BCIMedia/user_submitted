@@ -11,6 +11,16 @@
             <% elsif content.data.content_type.include? "video" %>
               <%= content_tag :div, nil, class: "video-player", id: "video_player_#{content.id}", data: {source: content.data.url}%>
             <% end %>
+            <div class="gallery-info">
+              <div class="meta-title-static">
+                <span class="gallery-title">
+                  <%= collection.name.html_safe %>
+                </span>
+              </div>
+              <div class="small-12 columns">
+                <h6 class="vp-title"><%= collection.description.html_safe %></h6>
+              </div>
+            </div>
             <div class="image-toolbar">
               <div class="image-toolbar-items">
                 <span class="image-icons image-gallery">
@@ -37,17 +47,6 @@
         </div>
       <% end %>
     </div>
-    <div class="gallery-info">
-      <div class="meta-title-static">
-        <span class="gallery-title">
-          <%= collection.name.html_safe %>
-        </span>
-      </div>
-      <div class="small-12 columns">
-        <h6 class="vp-title"><%= collection.description.html_safe %></h6>
-      </div>
-    </div>
   </div>
-
   <%= render partial: "partials/special_sections/content_modal", locals: { collection: collection } %>
 </div>
