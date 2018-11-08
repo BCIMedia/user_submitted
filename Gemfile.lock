@@ -1,7 +1,11 @@
 PATH
   remote: .
   specs:
+<<<<<<< HEAD
     user_submitted (0.1.12)
+=======
+    user_submitted (0.1.11)
+>>>>>>> fc8ad94c36506dabe11916b9b415fd3d21ea8b5c
       figaro (= 1.1.1)
       mysql2 (= 0.4.10)
       rails (= 4.2.8)
@@ -160,4 +164,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.16.2
+   1.16.4

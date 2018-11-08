@@ -9,6 +9,7 @@ module UserSubmitted
 
     # GET /collections/1
     def show
+      @collections = Collection.approved_contents
     end
 
     # GET /collections/new

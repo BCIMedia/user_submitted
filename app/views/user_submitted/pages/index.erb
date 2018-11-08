@@ -1,47 +1,11 @@
 <div class="row admin-container user-submitted-collection-index">
-  <div class="columns small-12">
-    <div class="gallery-info">
-      <div class="meta-title-static">
-        <span class="gallery-title">
-          <h2><%= @collection.name.html_safe %></h2>
-        </span>
-      </div>
-      <div class="small-12 columns">
-        <h5 class="vp-title"><%= @collection.description.html_safe %></h5>
-      </div>
+    <div class="columns small-12">
+  <%= render partial: "user_submitted/collections/show", locals: {collection: @collection} %>
+  <% @collections.each do |collection| %>
+    <div class="columns small-12 medium-6">
+      <%= render partial: "user_submitted/collections/preview", locals: {collection: collection} %>
     </div>
-  </div>
-  <div class="columns small-12">
-    <div class="gallery-slider" id="circle-arrows">
-      <% @collection.contents.approved.each do |content| %>
-        <div class="slider-container">
-          <div class="hide-for-print">
-            <% if content.data.content_type.include? "image" %>
-              <%= link_to "#", data: {open: "gallery-images-modal-#{@collection.id}"} do %>
-                <%= image_tag content.data.url %>
-              <% end %>
-            <% elsif content.data.content_type.include? "video" %>
-              <%= content_tag :div, nil, class: "video-player", id: "video_player_#{content.id}", data: {source: content.data.url}%>
-            <% end %>
-            <div class="image-toolbar">
-              <div class="image-toolbar-items">
-                <% if content.credit.present? %>
-                  <div class="image-caption">
-                    <%= content.caption %>
-                  </div>
-                <% end %>
-                <% if content.credit.present? %>
-                  <span class="image-byline">
-                    Courtesy of <%= content.credit %>
-                  </span>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <% end %>
 </div>
 <script type='text/javascript'>
   var slick_options = {
