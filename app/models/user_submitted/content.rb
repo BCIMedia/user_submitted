@@ -28,7 +28,8 @@ module UserSubmitted
 
     scope :images, -> { where("data_content_type LIKE ?", "%image%") }
     scope :videos, -> { where("data_content_type LIKE ?", "%video%") }
-    scope :images, -> { where(status: :approved) }
+    scope :approved_videos, -> { images.where(status: :approved) }
+    scope :approved_images, -> { videos.where(status: :approved) }
 
     def content_rejected
 

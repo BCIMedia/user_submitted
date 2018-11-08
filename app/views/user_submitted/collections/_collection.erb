@@ -4,7 +4,7 @@
       <% content = collection.contents.approved.order(:created_at).first %>
       <div class="slider-container">
         <div class="hide-for-print">
-          <%= link_to user_submitted_collection_path(collection.id) do %>
+          <%= link_to user_submitted_index_path(collection.id) do %>
             <% if content.data.content_type.include? "image" %>
                 <%= image_tag content.data.url %>
             <% elsif content.data.content_type.include? "video" %>
@@ -41,7 +41,7 @@
       </div>
     </div>
   <div class="user-submit-btn universal-flex-container universal-flex-natural">
-    <%= link_to "Submit your own photos &amp; videos".html_safe, user_submitted_new_content_path(collection.id), class: "flex-button-natural universal-flex-button" %>
+    <%= link_to "Submit Your own photos &amp; videos".html_safe, user_submitted_new_content_path(collection.id), class: "flex-button-natural universal-flex-button" %>
   </div>
 </div>
 <% end %>
