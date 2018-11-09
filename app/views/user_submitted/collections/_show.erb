@@ -12,10 +12,15 @@
               <%= content_tag :div, nil, class: "video-player", id: "video_player_#{content.id}", data: {source: content.data.url}%>
             <% end %>
             <div class="gallery-info">
-              <div class="meta-title-static">
-                <span class="gallery-title">
-                  <%= collection.name.html_safe %>
-                </span>
+              <div class="meta-title-static row">
+                <div class="columns small-12 medium-9">
+                  <span class="gallery-title">
+                    <%= collection.name.html_safe %>
+                  </span>
+                </div>
+                <div class="columns small-12 medium-3">
+                  <%= render partial: "user_submitted/collections/sharing_icons", locals: { collection: collection } %>
+                </div>
               </div>
               <div class="small-12 columns">
                 <h6 class="vp-title"><%= collection.description.html_safe %></h6>
@@ -31,9 +36,9 @@
                     </span>
                   <% end %>
                 </span>
-                <% if content.credit.present? %>
+                <% if content.caption.present? %>
                   <div class="image-caption">
-                    Courtesy of <%= content.caption %>
+                    <%= content.caption %>
                   </div>
                 <% end %>
                 <% if content.credit.present? %>

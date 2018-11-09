@@ -15,12 +15,17 @@
         </p>
       </div>
       <div class="gallery-info">
-        <div class="meta-title-static">
+        <div class="row">
           <%= link_to reader_index_path(collection) do %>
-            <span class="gallery-title">
-              <%= collection.name.html_safe %>
-            </span>
+            <div class="meta-title-static columns small-12">
+              <span class="gallery-title">
+                <%= collection.name.html_safe %>
+              </span>
+            </div>
           <% end %>
+          <div class="columns small-12 gallery-sharing-icons">
+            <%= render partial: "user_submitted/collections/sharing_icons", locals: { collection: collection } %>
+          </div>
         </div>
       </div>
       <div class="image-toolbar">
