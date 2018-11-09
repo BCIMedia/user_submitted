@@ -1,6 +1,7 @@
 <div class="row admin-container user-submitted-collection-index">
-    <div class="columns small-12">
-  <%= render partial: "user_submitted/collections/show", locals: {collection: @collection} %>
+  <div class="columns small-12">
+    <%= render partial: "user_submitted/collections/show", locals: {collection: @collection} %>
+  </div>
   <% @collections.each do |collection| %>
     <div class="columns small-12 medium-6">
       <%= render partial: "user_submitted/collections/preview", locals: {collection: collection} %>

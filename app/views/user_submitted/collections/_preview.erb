@@ -1,46 +1,47 @@
 <div class="gallery-item-group">
-  <% content = collection.contents.approved.last %>
-  <% link_to collection_index_path(collection.id) do %>
-    <div class="slider-container">
-      <div class="hide-for-print">
+  <% content = collection.contents.approved.first %>
+  <div class="slider-container">
+    <div class="hide-for-print">
+      <%= link_to reader_index_path(collection) do %>
         <% if content.data.content_type.include? "image" %>
-          <%= link_to "#", data: {open: "gallery-images-modal-#{collection.id}"} do %>
-            <%= image_tag content.data.url %>
-          <% end %>
+          <%= image_tag content.data.url %>
         <% elsif content.data.content_type.include? "video" %>
           <%= content_tag :div, nil, class: "video-player", id: "video_player_#{content.id}", data: {source: content.data.url}%>
         <% end %>
-        <div class="gallery-category-length">
-          <p>
-          <span class="gallery-length"><%= collection.contents.approved.count %> Images</span>
-          </p>
-        </div>
-        <div class="gallery-info">
-          <div class="meta-title-static">
+      <% end %>
+      <div class="gallery-category-length">
+        <p>
+        <span class="gallery-length"><%= collection.contents.approved.count %> Images</span>
+        </p>
+      </div>
+      <div class="gallery-info">
+        <div class="meta-title-static">
+          <%= link_to reader_index_path(collection) do %>
             <span class="gallery-title">
               <%= collection.name.html_safe %>
             </span>
-          </div>
-          <div class="small-12 columns">
-            <h6 class="vp-title"><%= collection.description.html_safe %></h6>
-          </div>
+          <% end %>
         </div>
-        <div class="image-toolbar">
-          <div class="image-toolbar-items">
-            <% if content.credit.present? %>
+      </div>
+      <div class="image-toolbar">
+        <div class="image-toolbar-items">
+          <% if content.credit.present? %>
+            <%= link_to reader_index_path(collection) do %>
               <div class="image-caption">
                 <%= content.caption %>
               </div>
             <% end %>
-            <% if content.credit.present? %>
+          <% end %>
+          <% if content.credit.present? %>
+            <%= link_to reader_index_path(collection) do %>
               <span class="image-byline">
                 Courtesy of <%= content.credit %>
               </span>
             <% end %>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>
-  <% end %>
+  </div>
 </div>
 

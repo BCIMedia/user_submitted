@@ -4,7 +4,7 @@
       <% content = collection.contents.approved.order(:created_at).first %>
       <div class="slider-container">
         <div class="hide-for-print">
-          <%= link_to user_submitted_index_path(collection.id) do %>
+          <%= link_to reader_index_path(collection) do %>
             <% if content.data.content_type.include? "image" %>
                 <%= image_tag content.data.url %>
             <% elsif content.data.content_type.include? "video" %>
