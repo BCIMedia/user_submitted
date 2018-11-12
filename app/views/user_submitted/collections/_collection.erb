@@ -6,7 +6,7 @@
         <div class="hide-for-print">
           <%= link_to reader_index_path(collection) do %>
             <% if content.data.content_type.include? "image" %>
-                <%= image_tag content.data.url %>
+                <%= image_tag content.data(:large) %>
             <% elsif content.data.content_type.include? "video" %>
               <%= content_tag :div, nil, class: "video-player", id: "video_player_#{content.id}", data: {source: content.data.url}%>
             <% end %>
@@ -30,18 +30,22 @@
     </div>
     <div class="featured-video-info">
       <div class="meta-title-static">
-        <h4 class="vp-title">
-          <%= collection.name.html_safe %>
-        </h4>
+        <%= link_to reader_index_path(collection) do %>
+          <h4 class="vp-title">
+            <%= collection.name.html_safe %>
+          </h4>
+        <% end %>
       </div>
       <div class="small-12 columns">
-        <div class="vp-title">
-          <p><%= collection.description.html_safe %></p>
-        </div>
+        <%= link_to reader_index_path(collection) do %>
+          <div class="vp-title">
+            <p><%= collection.description.html_safe %></p>
+          </div>
+        <% end %>
       </div>
     </div>
   <div class="universal-flex-container universal-flex-natural">
-    <%= link_to "Submit your own photos &amp; videos".html_safe, user_submitted_new_content_path(collection.id), class: "user-submitted-btn button" %>
+    <%= link_to "Send us your photos".html_safe, user_submitted_new_content_path(collection.id), class: "user-submitted-btn button" %>
   </div>
 </div>
 <% end %>

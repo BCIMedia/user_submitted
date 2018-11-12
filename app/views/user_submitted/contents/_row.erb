@@ -33,7 +33,7 @@
   <%= content.created_at.strftime("%l:%M%P, %B %e") %>
 </td>
 <td>
-  <%= render partial: "user_submitted/contents/display", locals: { content: content, size: 100 } %>
+  <%= render partial: "user_submitted/contents/display", locals: { content: content, size: 100, style: :tiny } %>
 </td>
 <td><%= content.credit.truncate(35) if content.credit.present? %></td>
 <% unless collection %>

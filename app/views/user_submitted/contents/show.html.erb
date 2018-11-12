@@ -4,7 +4,7 @@
       <h2 class="subhead"><%= link_to @content.collection.name, user_submitted_collection_path(@content.collection) %></h2>
       <div class="content-card">
         <div class="columns small-12">
-          <%= render partial: "user_submitted/contents/display", locals: { content: @content, size: "100%" } %>
+          <%= render partial: "user_submitted/contents/display", locals: { content: @content, size: "100%", style: :large } %>
         </div>
         <div class="columns small-12">
           <strong>Caption:</strong> <%= simple_format(@content.caption) %>
