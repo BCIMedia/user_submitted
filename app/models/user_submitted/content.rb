@@ -10,7 +10,10 @@ module UserSubmitted
     if Rails.env == "development"
       has_attached_file :data
     else
-      has_attached_file :data, path: "/#{UserSubmitted.configuration.s3_directory}/:class/:id/:attachment/:id_:filename"
+      has_attached_file :data,
+        path: "/#{UserSubmitted.configuration.s3_directory}/:class/:id/:attachment/:style/:id_:filename",
+        source_file_options: { all: "-auto-orient" },
+        styles: { original: "", thumb: "200x200#" }
     end
 
     # validates_attachment :data,
