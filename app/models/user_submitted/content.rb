@@ -12,7 +12,7 @@ module UserSubmitted
       has_attached_file :data,
         path: "/#{UserSubmitted.configuration.s3_directory}/:class/:id/:attachment/:style/:id_:filename",
         source_file_options: { all: "-auto-orient" },
-        styles: { original: "", large: "1060", medium: "690", thumb: "345" }
+        styles: { original: "", large: "1060", medium: "690", thumb: "345", tiny: "100" }
     end
 
     # validates_attachment :data,
