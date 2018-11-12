@@ -1,6 +1,5 @@
 module UserSubmitted
   class Content < ActiveRecord::Base
-    include InvalidatesCache
     self.table_name = "user_submitted_contents"
 
     validates_presence_of :credit
@@ -13,7 +12,7 @@ module UserSubmitted
       has_attached_file :data,
         path: "/#{UserSubmitted.configuration.s3_directory}/:class/:id/:attachment/:style/:id_:filename",
         source_file_options: { all: "-auto-orient" },
-        styles: { original: "", thumb: "200x200#" }
+        styles: { original: "", large: "1060", medium: "690", thumb: "345" }
     end
 
     # validates_attachment :data,

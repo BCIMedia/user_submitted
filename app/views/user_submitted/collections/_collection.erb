@@ -6,7 +6,7 @@
         <div class="hide-for-print">
           <%= link_to reader_index_path(collection) do %>
             <% if content.data.content_type.include? "image" %>
-                <%= image_tag content.data.url %>
+                <%= image_tag content.data.image(:large) %>
             <% elsif content.data.content_type.include? "video" %>
               <%= content_tag :div, nil, class: "video-player", id: "video_player_#{content.id}", data: {source: content.data.url}%>
             <% end %>
