@@ -7,18 +7,30 @@
       <% end %>
     </div>
   </div>
-  <div class="columns small-12">
-    <ul>
-    <% @collections.each do |collection| %>
-      <li>
-        <h3><%= link_to collection.name, user_submitted_collection_path(collection) %></h3>
-        <ul>
-        <li><%= link_to "Pending:  #{collection.contents.pending.count}", user_submitted_collection_path(collection, status: "pending") %></li>
-        <li><%= link_to "Approved: #{collection.contents.approved.count}", user_submitted_collection_path(collection, status: "approved") %></li>
-        <li><%= link_to "Rejected: #{collection.contents.rejected.count}", user_submitted_collection_path(collection, status: "rejected")  %></li>
-        </ul>
-      </li>
-    <% end %>
-    <ul>
+  <div class="columns small-12 user-submitted-admin-root">
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Pending</th>
+        <th>Approved</th>
+        <th>Rejected</th>
+        <th>Homepage?</th>
+      </thead>
+      <tbody>
+        <% @collections.each do |collection| %>
+          <tr>
+            <td><%= link_to collection.name, user_submitted_collection_path(collection) %></td>
+            <td><%= link_to collection.contents.pending.count, user_submitted_collection_path(collection, status: "pending") %></td>
+            <td><%= link_to collection.contents.approved.count, user_submitted_collection_path(collection, status: "approved") %></td>
+            <td><%= link_to collection.contents.rejected.count, user_submitted_collection_path(collection, status: "rejected")  %></td>
+            <td>
+              <% setting = Setting.find_by(identifier: :active_user_submitted_gallery) %>
+              <% setting_class = setting.present? && setting.value.to_i == collection.id ? 'selected' : '' %>
+              <%= link_to "<i class='fas fa-star'></i>".html_safe, admin_set_user_submitted_gallery_path(id: collection.id), method: :post, title: "Set Centerpiece", class: setting_class %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

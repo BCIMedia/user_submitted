@@ -1,0 +1,12 @@
+
+<div class="social-icons">
+  <a href="<%="http://www.facebook.com/sharer/sharer.php?u=#{reader_index_url(collection.id)}&title=#{collection.name.gsub(/ /, "+")}"%>" target="_blank" class="facebook-share-link">
+    <div class="icon-wrapper"><i class="fab fa-facebook-square"></i></div>
+  </a>
+  <a href="<%="http://twitter.com/intent/tweet?status=#{collection.name.gsub(/ /, "+")}+#{reader_index_url(collection.id)}"%>" target="_blank" class="twitter-share-link">
+    <div class="icon-wrapper"><i class="fab fa-twitter"></i></div>
+  </a>
+  <%= mail_to nil, subject: "Check out #{collection.name} collection on #{ENV['app_domain']}!", body: "#{reader_index_url(collection)}", class: "mail-share-link" do %>
+    <div class="icon-wrapper"><i class="fas fa-envelope"></i></div>
+  <% end %>
+</div>

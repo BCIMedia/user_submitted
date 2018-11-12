@@ -1,5 +1,6 @@
 module UserSubmitted
   class Collection < ActiveRecord::Base
+    include InvalidatesCache
     self.table_name = "user_submitted_collections"
     before_save do
       if self.identifier.present?
@@ -11,5 +12,11 @@ module UserSubmitted
 
     has_many :contents, -> { where.not(status: Content.statuses[:temp]).order(id: :desc) }
 
+    scope :approved_contents, -> { joins(:contents).where(user_submitted_contents: {status: Content.statuses[:approved]}).references(:contents) }
+
+
+  def to_param
+    "#{id}-#{name.urlify if name}"
+  end
   end
 end

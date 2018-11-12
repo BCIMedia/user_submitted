@@ -8,6 +8,7 @@ module UserSubmitted
 
     def index
       @collection = UserSubmitted::Collection.includes(:contents).find(params[:id])
+      @collections = UserSubmitted::Collection.approved_contents.where.not(id: @collection.id).uniq
     end
 
     def group

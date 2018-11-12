@@ -1,0 +1,52 @@
+<div class="gallery-item-group">
+  <% content = collection.contents.approved.first %>
+  <div class="slider-container">
+    <div class="hide-for-print">
+      <%= link_to reader_index_path(collection) do %>
+        <% if content.data.content_type.include? "image" %>
+          <%= image_tag content.data.url %>
+        <% elsif content.data.content_type.include? "video" %>
+          <%= content_tag :div, nil, class: "video-player", id: "video_player_#{content.id}", data: {source: content.data.url}%>
+        <% end %>
+      <% end %>
+      <div class="gallery-category-length">
+        <p>
+        <span class="gallery-length"><%= collection.contents.approved.count %> Images</span>
+        </p>
+      </div>
+      <div class="gallery-info">
+        <div class="row">
+            <div class="meta-title-static columns small-12">
+              <%= link_to reader_index_path(collection) do %>
+                <span class="gallery-title">
+                  <%= collection.name.html_safe %>
+                </span>
+              <% end %>
+            </div>
+          <div class="columns small-12 gallery-sharing-icons">
+            <%= render partial: "user_submitted/collections/sharing_icons", locals: { collection: collection } %>
+          </div>
+        </div>
+      </div>
+      <div class="image-toolbar">
+        <div class="image-toolbar-items">
+          <% if content.credit.present? %>
+            <%= link_to reader_index_path(collection) do %>
+              <div class="image-caption">
+                <%= content.caption %>
+              </div>
+            <% end %>
+          <% end %>
+          <% if content.credit.present? %>
+            <%= link_to reader_index_path(collection) do %>
+              <span class="image-byline">
+                Courtesy of <%= content.credit %>
+              </span>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

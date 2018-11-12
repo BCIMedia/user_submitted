@@ -1,34 +1,12 @@
-<div class="row admin-container">
+<div class="row admin-container user-submitted-collection-index">
   <div class="columns small-12">
-    <h2><%= @collection.name %></h2>
+    <%= render partial: "user_submitted/collections/show", locals: {collection: @collection} %>
   </div>
-  <div class="columns small-12">
-    <% @collection.contents.approved.each do |content| %>
-      <div class="slider-container">
-        <div class="hide-for-print">
-          <% if content.data.content_type.include? "image" %>
-            <%= link_to "#", data: {open: "gallery-images-modal-#{@collection.id}"} do %>
-              <%= image_tag content.data.url %>
-            <% end %>
-          <% elsif content.data.content_type.include? "video" %>
-            <%= content_tag :div, nil, class: "video-player", id: "video_player_#{content.id}", data: {source: content.data.url}%>
-          <% end %>
-          <div class="slider-image-info-group">
-            <% if content.credit.present? %>
-              <div class="image-caption">
-                <%= content.caption %>
-              </div>
-            <% end %>
-            <% if content.credit.present? %>
-              <div class="image-byline">
-                <%= content.credit %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
+  <% @collections.each do |collection| %>
+    <div class="columns small-12 medium-6">
+      <%= render partial: "user_submitted/collections/preview", locals: {collection: collection} %>
+    </div>
+  <% end %>
 </div>
 <script type='text/javascript'>
   var slick_options = {
