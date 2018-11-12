@@ -30,14 +30,18 @@
     </div>
     <div class="featured-video-info">
       <div class="meta-title-static">
-        <h4 class="vp-title">
-          <%= collection.name.html_safe %>
-        </h4>
+        <%= link_to reader_index_path(collection) do %>
+          <h4 class="vp-title">
+            <%= collection.name.html_safe %>
+          </h4>
+        <% end %>
       </div>
       <div class="small-12 columns">
-        <div class="vp-title">
-          <p><%= collection.description.html_safe %></p>
-        </div>
+        <%= link_to reader_index_path(collection) do %>
+          <div class="vp-title">
+            <p><%= collection.description.html_safe %></p>
+          </div>
+        <% end %>
       </div>
     </div>
   <div class="universal-flex-container universal-flex-natural">
