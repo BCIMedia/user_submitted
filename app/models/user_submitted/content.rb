@@ -7,14 +7,14 @@ module UserSubmitted
     belongs_to :collection
 
     if Rails.env == "development"
-      has_attached_file :data,
-        source_file_options: { all: "-auto-orient" },
-        styles: { original: "", large: "1060", medium: "690", thumb: "345", tiny: "100" }
+      has_attached_file :data
     else
       has_attached_file :data,
         path: "/#{UserSubmitted.configuration.s3_directory}/:class/:id/:attachment/:style/:id_:filename",
         source_file_options: { all: "-auto-orient" },
         styles: { original: "", large: "1060", medium: "690", thumb: "345", tiny: "100" }
+      # has_attached_file :data,
+      #   path: "/#{UserSubmitted.configuration.s3_directory}/:class/:id/:attachment/:id_:filename"
     end
 
     # validates_attachment :data,
