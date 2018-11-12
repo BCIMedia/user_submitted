@@ -24,7 +24,8 @@
             <td><%= link_to collection.contents.approved.count, user_submitted_collection_path(collection, status: "approved") %></td>
             <td><%= link_to collection.contents.rejected.count, user_submitted_collection_path(collection, status: "rejected")  %></td>
             <td>
-              <% setting_class = Setting.find_by(identifier: :active_user_submitted_gallery).value.to_i == collection.id ? 'selected' : '' %>
+              <% setting = Setting.find_by(identifier: :active_user_submitted_gallery) %>
+              <% setting_class = setting.present? && setting.value.to_i == collection.id ? 'selected' : '' %>
               <%= link_to "<i class='fas fa-star'></i>".html_safe, admin_set_user_submitted_gallery_path(id: collection.id), method: :post, title: "Set Centerpiece", class: setting_class %>
             </td>
           </tr>
