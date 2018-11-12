@@ -1,5 +1,6 @@
 module UserSubmitted
   class Content < ActiveRecord::Base
+    include InvalidatesCache
     self.table_name = "user_submitted_contents"
 
     validates_presence_of :credit
