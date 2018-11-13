@@ -12,7 +12,7 @@
       <div class="change-status">
         <div class="submission-content">
           <div class="submission-content-data">
-            <%= render partial: "user_submitted/contents/display", locals: { content: content, size: "auto" } %>
+            <%= render partial: "user_submitted/contents/display", locals: { content: content, size: "auto", style: :large } %>
           </div>
           <p class="submission-content-caption"><%= simple_format(content.caption) %></p>
           <p class="submission-content-credit">Courtesy of <%= content.credit %></p>
