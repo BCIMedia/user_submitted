@@ -5,7 +5,7 @@
     <%= render 'form' %>
 
     <div class="columns small-12 universal-flex-container">
-      <%= link_to @collection ? user_submitted_collection_path(@collection) : user_submitted_collections_path, class: "admin-back admin-button universal-flex-button flex-button-natural" do %>
+      <%= link_to @collection ? user_submitted_collection_path(@collection) : user_submitted_collections_path, class: "admin-back universal-flex-button flex-button-natural" do %>
         <i class="fas fa-arrow-left"></i>Back
       <% end %>
     </div>
