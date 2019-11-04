@@ -1,5 +1,5 @@
 module UserSubmitted
-  class Collection < ActiveRecord::Base
+  class Collection < ApplicationRecord
     self.table_name = "user_submitted_collections"
     before_save do
       if self.identifier.present?
