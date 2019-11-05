@@ -1,5 +1,5 @@
 module UserSubmitted
-  class Content < ActiveRecord::Base
+  class Content < ApplicationRecord
     self.table_name = "user_submitted_contents"
 
     validates_presence_of :credit
