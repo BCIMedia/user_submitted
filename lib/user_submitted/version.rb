@@ -1,3 +1,3 @@
 module UserSubmitted
-  VERSION = '1.1.02'
+  VERSION = '1.1.03'
 end
